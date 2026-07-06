@@ -1,23 +1,43 @@
-# Daily Game Dev News
+# Daily Express — 每日速递
 
-> 游戏开发 · 游戏圈 · AI圈发展 — 每日精选速递
+> 三站日报，每日精选。游戏、健康、世界，5 分钟跟上步伐。
 
-每日自动搜索三大领域的最新动态，生成 HTML 日报推送至 GitHub Pages 和微信。
+**总站**：https://nope-gao.github.io/daily-game-dev-news/
 
-**在线阅读**：https://nope-gao.github.io/daily-game-dev-news/
-
-## 内容板块
-
-| 板块 | 覆盖范围 |
+| 分站 | 覆盖范围 |
 |------|----------|
-| 游戏开发 | Godot/Unity/Unreal 引擎更新、开发工具、技术教程、开源项目 |
-| 游戏圈 | 新游发布、行业事件、Steam 数据、独立游戏推荐 |
-| AI 圈发展 | 大模型发布、AI 工具、框架更新、行业突破 |
+| 游戏 & AI & 网安 | 引擎更新、游戏圈、AI 突破、网络安全 |
+| 生物 & 永生 & 健康 | 抗衰老、基因治疗、生物技术、健康科普 |
+| 世界 & 政治 & 经济 | 国际局势、政治动态、经济趋势、商业 |
 
 ## 技术栈
 
 - **内容生成**：Hermes Agent + AI 模型
-- **页面**：纯静态 HTML + CSS，极简工作室风格，桌面表情包作视觉元素
-- **图表**：Mermaid.js
-- **部署**：GitHub Pages
+- **页面**：纯静态 HTML + CSS，极简工作室风格
+- **部署**：GitHub Pages（三站共用域名，子目录路由）
 - **自动化**：Hermes Cron Job + 微信推送
+
+## 项目结构
+
+```
+├── index.html          ← 总站 Hub（三个按钮 → 分站）
+├── assets/
+│   ├── style.css       ← 总站样式
+│   └── images/         ← 共享表情包
+├── game/               ← 分站 A
+│   ├── index.html
+│   ├── template.html
+│   ├── assets/style.css
+│   └── daily/
+├── bio/                ← 分站 B
+│   ├── index.html
+│   ├── template.html
+│   ├── assets/style.css
+│   └── daily/
+├── world/              ← 分站 C
+│   ├── index.html
+│   ├── template.html
+│   ├── assets/style.css
+│   └── daily/
+└── deploy.sh           ← 三站遍历部署脚本
+```
