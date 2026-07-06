@@ -4,7 +4,7 @@
 
 每日自动搜索三大领域的最新动态，生成 HTML 日报推送至 GitHub Pages 和微信。
 
-**在线阅读**：https://jason-gao.github.io/daily-game-dev-news/
+**在线阅读**：https://nope-gao.github.io/daily-game-dev-news/
 
 ## 内容板块
 
