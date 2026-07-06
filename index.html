@@ -30,7 +30,7 @@
           <span style="color:#2a9d8f;">AI突破</span>
           <span style="color:#e63946;">网安</span>
         </div>
-        <div class="latest" id="latest-game">加载中...</div>
+        <div class="latest">最新: 2026-07-06</div>
       </div>
       <div class="card-arrow">→</div>
     </a>
@@ -74,17 +74,5 @@
 
 </div>
 
-<script>
-// Fetch latest issue dates from each station's index page
-async function loadLatest() {
-  try {
-    let r = await fetch('game/');
-    let html = await r.text();
-    let m = html.match(/ARCHIVE_DATA\s*=\s*\[.*?"date":\s*"([^"]+)"/);
-    if (m) document.getElementById('latest-game').textContent = '最新: ' + m[1];
-  } catch(e) {}
-}
-loadLatest();
-</script>
 </body>
 </html>
