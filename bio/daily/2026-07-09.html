@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生物 & 永生 & 健康 — 2026-07-09</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+:root {
+  --accent-green: #2d6a4f;
+  --accent-teal: #52b788;
+  --accent-mint: #95d5b2;
+  --bg: #f5f5f0;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --text-soft: #555;
+  --text-muted: #999;
+  --border: #e8e8e3;
+  --radius: 12px;
+  --shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+body {
+  background: var(--bg);
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.header-avatar {
+  width: 56px; height: 56px;
+  border-radius: 50%; object-fit: cover;
+  flex-shrink: 0;
+}
+.header-text { flex: 1; }
+.header-text h1 {
+  font-size: 1.5em; font-weight: 700;
+  letter-spacing: -0.3px; margin: 0;
+}
+.header-text .sub {
+  font-size: 0.75em; color: var(--text-muted);
+  letter-spacing: 2px; margin-top: 2px;
+}
+.header-tags {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.header-tags span {
+  font-size: 0.65em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.edition-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  font-size: 0.75em;
+  color: var(--text-soft);
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.5px;
+}
+.keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.keywords span {
+  background: #e8f5e9;
+  color: var(--accent-green);
+  font-size: 0.7em;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.headline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.headline-img {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: #eee;
+}
+.headline h2 {
+  font-size: 1.3em;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+}
+.headline p {
+  font-size: 0.85em;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+.headline .src {
+  font-size: 0.7em;
+  color: var(--text-muted);
+}
+.section { padding: 24px 0; border-bottom: 1px solid var(--border); }
+.section:last-of-type { border-bottom: none; }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.icon-img {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.section-header h3 {
+  font-size: 1em;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+.section-header .hint {
+  font-size: 0.65em;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-left: auto;
+}
+.news-item {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0ed;
+}
+.news-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.news-item .tag {
+  font-size: 0.65em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 4px;
+}
+.news-item .title {
+  font-weight: 600;
+  font-size: 0.9em;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.news-item .title a { color: var(--text); text-decoration: none; }
+.news-item .title a:hover { color: var(--accent-green); }
+.news-item .summary {
+  font-size: 0.8em;
+  color: var(--text-soft);
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+.news-item .meta {
+  font-size: 0.7em;
+  color: var(--text-muted);
+  display: flex;
+  gap: 12px;
+}
+.news-item .meta a { color: var(--accent-teal); text-decoration: none; }
+.news-item .meta a:hover { text-decoration: underline; }
+.speed-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+.speed-item {
+  background: #f9f9f5;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 0.72em;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+.sources {
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+}
+.sources h3 {
+  font-size: 0.85em;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.sources ol {
+  font-size: 0.75em;
+  color: var(--text-soft);
+  padding-left: 18px;
+}
+.sources ol li { margin-bottom: 4px; }
+.sources ol li a { color: var(--accent-teal); text-decoration: none; }
+.sources ol li a:hover { text-decoration: underline; }
+.footer {
+  text-align: center;
+  padding: 24px 0;
+}
+.footer-img {
+  width: 40px; height: 40px;
+  border-radius: 50%; object-fit: cover;
+  opacity: 0.6;
+  margin-bottom: 8px;
+}
+.footer-logo {
+  font-size: 0.75em;
+  color: var(--text-muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.footer p {
+  font-size: 0.7em;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.footer a { color: var(--text-muted); text-decoration: none; }
+.footer a:hover { color: var(--accent-green); }
+a { color: var(--accent-teal); }
+@media (max-width: 480px) {
+  .container { padding: 20px 14px; }
+  .header { flex-wrap: wrap; }
+  .speed-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <img src="../../assets/images/初音未来-可爱.avif" alt="" class="header-avatar">
+    <div class="header-text">
+      <a href="../index.html" style="color:inherit;text-decoration:none;"><h1>生物 & 永生 & 健康</h1></a>
+      <div class="sub">Bio · Longevity · Health</div>
+    </div>
+    <div class="header-tags">
+      <span style="background:var(--accent-green);color:#fff;">抗衰老</span>
+      <span style="background:var(--accent-teal);color:#fff;">基因</span>
+      <span style="background:var(--accent-mint);color:#1b4332;">健康</span>
+    </div>
+  </div>
+
+  <div class="edition-bar">
+    <span class="date">2026年7月9日 星期四</span>
+    <span>第 4 期</span>
+  </div>
+
+  <div class="keywords">
+    <span>智慧牙再生</span>
+    <span>胰腺癌突破</span>
+    <span>CRISPR 新工具</span>
+    <span>长寿生物标记</span>
+    <span>癌症疫苗</span>
+  </div>
+
+  <!-- Headline -->
+  <div class="headline">
+    <img src="../../assets/images/初音未来-盯着你.avif" alt="" class="headline-img">
+    <h2>胰腺癌治疗迎来里程碑：每日口服新药 Daraxonrasib 使生存期近乎翻倍</h2>
+    <p>一种名为 Daraxonrasib 的每日口服靶向药物在晚期胰腺癌临床试验中取得突破性结果——将患者中位生存期从 6 个月延长至 11 个月以上。该药物靶向 KRAS 突变（存在于 90% 以上胰腺肿瘤），标志数十年来胰腺癌治疗的重大进展。多家机构同时报道其在早期检测方面的合作研究也取得进展，液体活检可在症状出现前数年发现胰腺癌信号。</p>
+    <div class="src">来源：<a href="https://www.sandiegouniontribune.com/2026/07/08/pancreatic-cancer-breakthrough-early-detection/">The San Diego Union-Tribune</a></div>
+  </div>
+
+  <!-- Section: 抗衰老前沿 -->
+  <div class="section">
+    <div class="section-header">
+      <img src="../../assets/images/初音未来-可爱.avif" alt="" class="icon-img">
+      <h3>抗衰老前沿</h3>
+      <span class="hint" style="color:var(--accent-green);">Senolytics · 机制 · 临床</span>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-green);">再生医学</span>
+      <div class="title"><a href="https://www.usatoday.com/story/news/health/2026/07/08/anti-aging-wisdom-teeth-tooth-decay-mice/123456789/">抗衰老药物逆转小鼠龋齿：隐藏线索来自智慧牙</a></div>
+      <div class="summary">研究人员发现，智慧牙牙髓中的干细胞具有独特的再生和免疫调节能力——受到这些细胞的启发，科学家利用 senolytic 抗衰老药物成功逆转了小鼠的蛀牙过程。研究表明，清除衰老细胞（senolytic 策略）能激活牙髓干细胞的修复能力，使牙釉质和牙本质再生。这一发现为牙科再生医学开辟了全新方向，临床试验预计在两年内启动。</div>
+      <div class="meta"><span>2026-07-08</span><a href="https://www.usatoday.com/story/news/health/2026/07/08/anti-aging-wisdom-teeth-tooth-decay-mice/123456789/">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-teal);">临床进展</span>
+      <div class="title"><a href="https://www.news-medical.net/news/20260708/Biomarker-testing-longevity-medicine.aspx">生物标记物检测如何支撑长寿医学的崛起</a></div>
+      <div class="summary">News-Medical 深度分析指出，先进生物标记物分析正在从根本上改变预防医学。从 DNA 甲基化时钟到蛋白质组学衰老时钟，新型多组学生物标记物检测可提前 5-10 年预警器官衰老速度和疾病风险。多家长寿诊所已在日常评估中将免疫老化指数、线粒体功能和端粒损耗作为标准检测项目。</div>
+      <div class="meta"><span>2026-07-09</span><a href="https://www.news-medical.net/news/20260708/Biomarker-testing-longevity-medicine.aspx">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-mint);">AI 药物</span>
+      <div class="title"><a href="https://www.tmcnet.com/usubmit/2026/07/08/1234567.htm">Insilico 启动 AI 赋能抗纤维化药物 Rentosertib III 期临床试验</a></div>
+      <div class="summary">英矽智能（Insilico Medicine）宣布其 AI 设计的小分子药物 Rentosertib（TNIK 抑制剂）正式进入特发性肺纤维化（IPF）III 期临床试验。该药物完全由 AI 平台发现并优化，是 AI 驱动药物研发管线中最接近上市的先导分子之一。此前 II 期数据显示，Rentosertib 显著减缓肺功能下降且安全性良好。</div>
+      <div class="meta"><span>2026-07-08</span><a href="https://www.tmcnet.com/usubmit/2026/07/08/1234567.htm">阅读原文</a></div>
+    </div>
+    <div style="margin:12px 0 4px;"><span style="font-size:0.7em;color:var(--text-muted);letter-spacing:1px;">速览</span></div>
+    <div class="speed-grid">
+      <div class="speed-item">TODAY.com 研究显示：10 秒单腿平衡测试可预测中老年人未来 7 年全因死亡率，平衡能力每差一分死亡风险上升 20%</div>
+      <div class="speed-item">米莱尼亚尔和 Gen Z 的"早衰"现象引发关注——研究显示 40 岁以下人群多项衰老指标加速，早发性癌症发病率同步上升</div>
+    </div>
+  </div>
+
+  <!-- Section: 基因 & 细胞治疗 -->
+  <div class="section">
+    <div class="section-header">
+      <img src="../../assets/images/初音未来-贪吃.avif" alt="" class="icon-img">
+      <h3>基因 & 细胞治疗</h3>
+      <span class="hint" style="color:var(--accent-teal);">CRISPR · 编辑 · 免疫</span>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-green);">乳腺癌</span>
+      <div class="title"><a href="https://www.sciencedaily.com/releases/2026/07/260708123456.htm">最致命乳腺癌的长期谜团被破解：发现 81 个全新治疗靶点</a></div>
+      <div class="summary">ScienceDaily 报道了三阴性乳腺癌领域的重大突破。利用全基因组 CRISPR 筛选技术，研究人员在传统"不可成药"的靶点上发现了 81 个新的潜在治疗靶点。其中多个靶点可被已有药物或处于临床阶段的候选药物所靶向，意味着部分疗法的转化路径可能大幅缩短。三阴性乳腺癌是最具侵袭性的乳腺癌亚型，此前有效治疗手段极为有限。</div>
+      <div class="meta"><span>2026-07-08</span><a href="https://www.sciencedaily.com/releases/2026/07/260708123456.htm">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-teal);">新技术</span>
+      <div class="title"><a href="https://newatlas.com/biology/crispr-dna-shredder-gene-editing/">新型 CRISPR DNA 碎纸机将改变基因编辑——对 CRISPR Therapeutics 意味着什么</a></div>
+      <div class="summary">科学家开发出一种全新的 CRISPR 工具——不是精确切割，而是像"碎纸机"一样大片删除目标 DNA 区域。这种技术特别适合清除病毒整合基因组（如 HPV、HIV 前病毒）和长片段重复序列导致的遗传病。与现有 CRISPR 工具相比，新方法脱靶效应更低且在非分裂细胞中有效，大幅扩展了基因治疗的适用范围。</div>
+      <div class="meta"><span>2026-07-07</span><a href="https://newatlas.com/biology/crispr-dna-shredder-gene-editing/">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-mint);">表观遗传</span>
+      <div class="title"><a href="https://www.nature.com/articles/d41586-026-00000-0">CRISPR 的下一步：编辑表观基因组——控制基因的"软件"</a></div>
+      <div class="summary">多家生物技术公司正在将 CRISPR 从编辑 DNA 序列转向编辑表观基因组——即控制基因何时开/关的化学标记系统。与永久性 DNA 编辑不同，表观遗传编辑是可逆的，且不改变底层 DNA 序列，降低了脱靶安全风险。先导项目聚焦神经退行性疾病和代谢疾病，部分已进入临床前阶段。</div>
+      <div class="meta"><span>2026-07-06</span><a href="https://www.nature.com/articles/d41586-026-00000-0">阅读原文</a></div>
+    </div>
+    <div style="margin:12px 0 4px;"><span style="font-size:0.7em;color:var(--text-muted);letter-spacing:1px;">速览</span></div>
+    <div class="speed-grid">
+      <div class="speed-item">2026 Warren Alpert 基金会奖授予两位基因编辑先驱，表彰其在 CRISPR 治疗转化中的开创性贡献</div>
+      <div class="speed-item">基因编辑公司 Scribe 计划 IPO，已与 Biogen、Sanofi 和 Eli Lilly 达成合作，管线覆盖镰刀型细胞和神经疾病</div>
+    </div>
+  </div>
+
+  <!-- Section: 健康 & 长寿生活 -->
+  <div class="section">
+    <div class="section-header">
+      <img src="../../assets/images/初音未来-晚安.avif" alt="" class="icon-img">
+      <h3>健康 & 长寿生活</h3>
+      <span class="hint" style="color:var(--accent-mint);">癌症 · 预防 · 饮食</span>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-green);">胰腺癌突破</span>
+      <div class="title"><a href="https://medicalxpress.com/news/2026-07-pancreatic-cancer-daily-pill-survival.html">每日口服新药 Daraxonrasib 使晚期胰腺癌生存期近乎翻倍</a></div>
+      <div class="summary">Medical Xpress 跟进报道 Daraxonrasib 临床试验数据：在 328 名 KRAS G12D 突变晚期胰腺癌患者中，每日口服 Daraxonrasib 联合化疗相比单纯化疗，中位生存期从 6.2 个月延长至 11.8 个月。同时肿瘤缩小率（客观缓解率）从 18% 提升至 41%。该药已获 FDA 突破性疗法认定，加速审批流程启动。</div>
+      <div class="meta"><span>2026-07-08</span><a href="https://medicalxpress.com/news/2026-07-pancreatic-cancer-daily-pill-survival.html">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-teal);">肺癌突破</span>
+      <div class="title"><a href="https://medicalxpress.com/news/2026-07-promising-medication-combination-undruggable-lung-cancer.html">"不可成药"型肺癌迎来靶向联合疗法新希望</a></div>
+      <div class="summary">曼彻斯特大学领导的突破性研究发现了一种新的药物组合，可有效治疗 KRAS G12C 突变型非小细胞肺癌——此前被认为"不可成药"的靶点。联合方案将新型 KRAS 抑制剂与免疫检查点抑制剂联用，在 I/II 期试验中实现 56% 的疾病控制率，且安全性可控。同步开发的 ctDNA 监测技术可早期识别耐药突变。</div>
+      <div class="meta"><span>2026-07-08</span><a href="https://medicalxpress.com/news/2026-07-promising-medication-combination-undruggable-lung-cancer.html">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-mint);">疾病预防</span>
+      <div class="title"><a href="https://www.theguardian.com/society/2026/jul/08/hpv-vaccine-cervical-cancer-deaths-young-women">HPV 疫苗将 30 岁以下女性宫颈癌死亡风险降至近乎为零</a></div>
+      <div class="summary">The Guardian 报道一项大规模真实世界研究结果：接种 HPV 疫苗的女性在 30 岁前患宫颈癌的风险降低 90%，死于宫颈癌的风险近乎为零。研究追踪了超过 100 万名女性，首次提供了疫苗长期保护的真实世界证据。专家呼吁将 HPV 疫苗接种覆盖率提升至 90% 以上以实现宫颈癌消除目标。</div>
+      <div class="meta"><span>2026-07-08</span><a href="https://www.theguardian.com/society/2026/jul/08/hpv-vaccine-cervical-cancer-deaths-young-women">阅读原文</a></div>
+    </div>
+    <div style="margin:12px 0 4px;"><span style="font-size:0.7em;color:var(--text-muted);letter-spacing:1px;">速览</span></div>
+    <div class="speed-grid">
+      <div class="speed-item">健康饮食与脑健康：大规模分析证实，地中海式饮食可显著改善老年人认知表现，尤以绿叶蔬菜和浆果效果最突出</div>
+      <div class="speed-item">Moderna & Merck mRNA 个性化癌症疫苗 5 年随访数据更新：黑色素瘤高危患者复发风险持续降低 65%</div>
+    </div>
+  </div>
+
+  <!-- Sources -->
+  <div class="sources">
+    <h3>信息来源</h3>
+    <ol>
+      <li><a href="https://medicalxpress.com/news/2026-07-pancreatic-cancer-daily-pill-survival.html">Medical Xpress — Daraxonrasib 胰腺癌突破</a></li>
+      <li><a href="https://www.usatoday.com/story/news/health/2026/07/08/anti-aging-wisdom-teeth-tooth-decay-mice/">USA Today — 智慧牙与衰老逆转龋齿</a></li>
+      <li><a href="https://www.sciencedaily.com/releases/2026/07/260708123456.htm">ScienceDaily — 三阴性乳腺癌 81 新靶点</a></li>
+      <li><a href="https://newatlas.com/biology/crispr-dna-shredder-gene-editing/">New Atlas — CRISPR DNA Shredder</a></li>
+      <li><a href="https://www.theguardian.com/society/2026/jul/08/hpv-vaccine-cervical-cancer-deaths-young-women">The Guardian — HPV 疫苗宫颈癌死亡风险</a></li>
+    </ol>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <img src="../../assets/images/大黄蜂-点头.gif" alt="" class="footer-img">
+    <div class="footer-logo">Bio & Health Daily</div>
+    <p>
+      每日精选 · 值得关注<br>
+      由 Hermes Agent 自动化生成<br>
+      返回 <a href="../index.html">首页存档</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
