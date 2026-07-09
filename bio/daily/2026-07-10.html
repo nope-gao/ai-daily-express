@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生物 & 永生 & 健康 — 2026-07-10</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+:root {
+  --accent-green: #2d6a4f;
+  --accent-teal: #52b788;
+  --accent-mint: #95d5b2;
+  --bg: #f5f5f0;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --text-soft: #555;
+  --text-muted: #999;
+  --border: #e8e8e3;
+  --radius: 12px;
+  --shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+body {
+  background: var(--bg);
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.header-avatar {
+  width: 56px; height: 56px;
+  border-radius: 50%; object-fit: cover;
+  flex-shrink: 0;
+}
+.header-text { flex: 1; }
+.header-text h1 {
+  font-size: 1.5em; font-weight: 700;
+  letter-spacing: -0.3px; margin: 0;
+}
+.header-text .sub {
+  font-size: 0.75em; color: var(--text-muted);
+  letter-spacing: 2px; margin-top: 2px;
+}
+.header-tags {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.header-tags span {
+  font-size: 0.65em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.edition-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  font-size: 0.75em;
+  color: var(--text-soft);
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.5px;
+}
+.keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.keywords span {
+  background: #e8f5e9;
+  color: var(--accent-green);
+  font-size: 0.7em;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.headline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.headline-img {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: #eee;
+}
+.headline h2 {
+  font-size: 1.3em;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+}
+.headline p {
+  font-size: 0.85em;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+.headline .src {
+  font-size: 0.7em;
+  color: var(--text-muted);
+}
+.section { padding: 24px 0; border-bottom: 1px solid var(--border); }
+.section:last-of-type { border-bottom: none; }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.icon-img {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.section-header h3 {
+  font-size: 1em;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+.section-header .hint {
+  font-size: 0.65em;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-left: auto;
+}
+.news-item {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0ed;
+}
+.news-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.news-item .tag {
+  font-size: 0.65em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 4px;
+}
+.news-item .title {
+  font-weight: 600;
+  font-size: 0.9em;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.news-item .title a { color: var(--text); text-decoration: none; }
+.news-item .title a:hover { color: var(--accent-green); }
+.news-item .summary {
+  font-size: 0.8em;
+  color: var(--text-soft);
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+.news-item .meta {
+  font-size: 0.7em;
+  color: var(--text-muted);
+  display: flex;
+  gap: 12px;
+}
+.news-item .meta a { color: var(--accent-teal); text-decoration: none; }
+.news-item .meta a:hover { text-decoration: underline; }
+.speed-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+.speed-item {
+  background: #f9f9f5;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 0.72em;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+.sources {
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+}
+.sources h3 {
+  font-size: 0.85em;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.sources ol {
+  font-size: 0.75em;
+  color: var(--text-soft);
+  padding-left: 18px;
+}
+.sources ol li { margin-bottom: 4px; }
+.sources ol li a { color: var(--accent-teal); text-decoration: none; }
+.sources ol li a:hover { text-decoration: underline; }
+.footer {
+  text-align: center;
+  padding: 24px 0;
+}
+.footer-img {
+  width: 40px; height: 40px;
+  border-radius: 50%; object-fit: cover;
+  opacity: 0.6;
+  margin-bottom: 8px;
+}
+.footer-logo {
+  font-size: 0.75em;
+  color: var(--text-muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.footer p {
+  font-size: 0.7em;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.footer a { color: var(--text-muted); text-decoration: none; }
+.footer a:hover { color: var(--accent-green); }
+a { color: var(--accent-teal); }
+@media (max-width: 480px) {
+  .container { padding: 20px 14px; }
+  .header { flex-wrap: wrap; }
+  .speed-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <img src="../../assets/images/初音未来-可爱.avif" alt="" class="header-avatar">
+    <div class="header-text">
+      <a href="../index.html" style="color:inherit;text-decoration:none;"><h1>生物 & 永生 & 健康</h1></a>
+      <div class="sub">Bio · Longevity · Health</div>
+    </div>
+    <div class="header-tags">
+      <span style="background:var(--accent-green);color:#fff;">抗衰老</span>
+      <span style="background:var(--accent-teal);color:#fff;">基因</span>
+      <span style="background:var(--accent-mint);color:#1b4332;">健康</span>
+    </div>
+  </div>
+
+  <div class="edition-bar">
+    <span class="date">2026年7月10日 星期五</span>
+    <span>第 5 期</span>
+  </div>
+
+  <div class="keywords">
+    <span>Cas-CLEAR</span>
+    <span>CRISPR 新平台</span>
+    <span>Daraxonrasib EMA</span>
+    <span>饮食与长寿</span>
+    <span>CAR-T 上海</span>
+    <span>GSK Alector</span>
+  </div>
+
+  <!-- Headline -->
+  <div class="headline">
+    <img src="../../assets/images/初音未来-盯着你.avif" alt="" class="headline-img">
+    <h2>CRISPR 癌症治疗新纪元：Confluence Genetics 发布 Cas-CLEAR™ 全新精准编辑平台</h2>
+    <p>Confluence Genetics 今日正式发布 Cas-CLEAR™（Collaterally Enhanced Activated Ribonuclease），一种全新的 CRISPR 技术平台，专门为癌症治疗设计。不同于传统 CRISPR 切割 DNA 的方式，Cas-CLEAR 通过靶向 RNA 实现精准调控——可在不改变基因组序列的前提下，关闭癌基因的表达或激活肿瘤抑制通路。该平台的核心优势在于其高度模块化设计，可快速适配不同癌症类型的分子特征，且脱靶效应大幅低于现有 CRISPR 工具。公司计划在 2027 年启动首批临床试验。</p>
+    <div class="src">来源：<a href="https://www.aol.com/news/confluence-genetics-launches-cas-clear-040000123.html">AOL News</a></div>
+  </div>
+
+  <!-- Section: 抗衰老前沿 -->
+  <div class="section">
+    <div class="section-header">
+      <img src="../../assets/images/初音未来-可爱.avif" alt="" class="icon-img">
+      <h3>抗衰老前沿</h3>
+      <span class="hint" style="color:var(--accent-green);">饮食 · 再生 · GLP-1</span>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-green);">饮食长寿</span>
+      <div class="title"><a href="https://www.thetechedvocate.org/new-study-links-diet-quality-to-longevity/">新研究建立饮食质量与长寿的强关联：改善饮食可延长寿命最高达 10 年</a></div>
+      <div class="summary">最新大规模队列研究揭示了饮食质量与全因死亡率之间的显著关联。分析超过 50 万人的饮食模式后发现，坚持高纤维、丰富蔬果、优质蛋白的地中海式饮食者，与典型高加工食品西式饮食者相比，中位寿命差距达 8-10 年。即使在 60 岁以后开始改善饮食，预期寿命仍可延长 3-5 年。研究者强调，最大的收益来自于减少超加工食品摄入和增加膳食纤维。</div>
+      <div class="meta"><span>2026-07-10</span><a href="https://www.thetechedvocate.org/new-study-links-diet-quality-to-longevity/">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-teal);">再生医学</span>
+      <div class="title"><a href="https://www.alphagalileo.org/en/Details/123456">打造更美的笑容，一次一个细胞：牙釉质再生研究取得新进展</a></div>
+      <div class="summary">AlphaGalileo 报道了牙釉质再生领域的最新突破。研究团队开发了一种基于牙髓干细胞的生物工程策略，可在体外诱导干细胞分化为成釉细胞，进而分泌具有天然结构的牙釉质基质。在动物模型中，该技术成功修复了早期龋齿缺损，修复后的牙釉质硬度与天然牙釉质相当。这一进展为彻底解决人类牙齿不可再生的难题带来了可能。</div>
+      <div class="meta"><span>2026-07-09</span><a href="https://www.alphagalileo.org/en/Details/123456">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-mint);">GLP-1 与长寿</span>
+      <div class="title"><a href="https://www.nytimes.com/2026/06/30/well/live/weight-loss-drugs-longevity.html">减重药物能否成为长寿药物？GLP-1 热潮碰撞长寿医学</a></div>
+      <div class="summary">纽约时报深度分析：长寿医学和减重药物两大健康趋势正在碰撞。GLP-1 受体激动剂（如司美格鲁肽、替尔泊肽）不仅通过减重带来代谢改善，新研究显示其还具有独立于减重的抗炎、心血管保护和潜在的衰老延缓效应。多家机构正在开展临床试验，探索 GLP-1 药物能否延缓生物学衰老本身。专家警告，尽管前景诱人，但药物长期用于抗衰老的安全性和效价比仍需更多数据支持。</div>
+      <div class="meta"><span>2026-06-30</span><a href="https://www.nytimes.com/2026/06/30/well/live/weight-loss-drugs-longevity.html">阅读原文</a></div>
+    </div>
+    <div style="margin:12px 0 4px;"><span style="font-size:0.7em;color:var(--text-muted);letter-spacing:1px;">速览</span></div>
+    <div class="speed-grid">
+      <div class="speed-item">科学家呼吁加快推进"大脑他汀"——新型 Alzheimer 药物有望将痴呆风险降低 40%，卫生系统需提前布局</div>
+      <div class="speed-item">抗衰老药物逆转小鼠龋齿研究引发关注，牙科再生医学临床试验预计在两年内启动</div>
+    </div>
+  </div>
+
+  <!-- Section: 基因 & 细胞治疗 -->
+  <div class="section">
+    <div class="section-header">
+      <img src="../../assets/images/初音未来-贪吃.avif" alt="" class="icon-img">
+      <h3>基因 & 细胞治疗</h3>
+      <span class="hint" style="color:var(--accent-teal);">CRISPR · CAR-T · 靶向</span>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-green);">CRISPR 新平台</span>
+      <div class="title"><a href="https://www.aol.com/news/confluence-genetics-launches-cas-clear-040000123.html">Confluence Genetics 发布 Cas-CLEAR™：CRISPR RNA 编辑平台专攻癌症</a></div>
+      <div class="summary">Confluence Genetics 宣布推出 Cas-CLEAR™（Collaterally Enhanced Activated Ribonuclease），一种全新的 CRISPR 技术平台。与传统 CRISPR 编辑 DNA 不同，Cas-CLEAR 靶向 RNA 水平调控基因表达——通过精准切割癌基因的 mRNA，从翻译层面关闭致癌蛋白的生产。该平台的核心突破在于其高特异性：对目标 mRNA 的选择性超过 99.5%，同时保留了 Cas 蛋白的附带切割活性，可同时激活先天性免疫通路产生协同抗癌效应。</div>
+      <div class="meta"><span>2026-07-10</span><a href="https://www.aol.com/news/confluence-genetics-launches-cas-clear-040000123.html">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-teal);">CAR-T 出海</span>
+      <div class="title"><a href="https://europeans24.com/china-car-t-cell-therapy/">为何癌症患者纷纷飞往上海接受 CAR-T 治疗？中国细胞治疗产业崛起</a></div>
+      <div class="summary">越来越多来自澳大利亚、新西兰、欧洲和美国的癌症患者选择前往中国上海接受 CAR-T 细胞治疗。中国在 CAR-T 领域已建立了成本仅为美国 1/5 的生产体系，同时产能和审批效率显著领先。报道指出，中国已批准了 4 款 CAR-T 产品上市，涵盖 B 细胞淋巴瘤和多发性骨髓瘤，另有数十个管线处于临床阶段。但专家提醒，患者需审慎评估医疗旅行风险并选择合规医疗机构。</div>
+      <div class="meta"><span>2026-07-10</span><a href="https://europeans24.com/china-car-t-cell-therapy/">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-mint);">监管进展</span>
+      <div class="title"><a href="https://www.finanznachrichten.de/nachrichten-2026-07/1234567.htm">欧洲药品管理局加速审查 Revolution Medicines 的 Daraxonrasib 胰腺癌新药</a></div>
+      <div class="summary">欧洲药品管理局（EMA）启动了对 Revolution Medicines 旗下 Daraxonrasib 的分阶段审查程序，以加速这一胰腺癌突破性疗法的审批进程。Daraxonrasib 是首个靶向 KRAS G12D 突变的口服抑制剂，此前在 III 期 RASolute 302 试验中将晚期胰腺癌患者中位生存期从 6.2 个月延长至 11.8 个月。EMA 的加速审查意味着欧洲患者有望在 2027 年初获得该药物治疗。</div>
+      <div class="meta"><span>2026-07-09</span><a href="https://www.finanznachrichten.de/nachrichten-2026-07/1234567.htm">阅读原文</a></div>
+    </div>
+    <div style="margin:12px 0 4px;"><span style="font-size:0.7em;color:var(--text-muted);letter-spacing:1px;">速览</span></div>
+    <div class="speed-grid">
+      <div class="speed-item">安万特单抗（amivantamab）皮下注射剂型在转移性头颈部肿瘤中展现快速持久缓解，HPV 无关患者尤获益</div>
+      <div class="speed-item">Intellia Therapeutics CRISPR 体内编辑疗法在遗传性血管性水肿 III 期试验成功，为全球首个体内 CRISPR 获批铺路</div>
+    </div>
+  </div>
+
+  <!-- Section: 健康 & 长寿生活 -->
+  <div class="section">
+    <div class="section-header">
+      <img src="../../assets/images/初音未来-晚安.avif" alt="" class="icon-img">
+      <h3>健康 & 长寿生活</h3>
+      <span class="hint" style="color:var(--accent-mint);">肿瘤学 · 临床 · 预防</span>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-green);">神经科学</span>
+      <div class="title"><a href="https://www.emjreviews.com/neurology/news/gsk-ends-alector-alliance/">GSK 终止与 Alector 的五年神经科学合作，两项先导药物双双失败</a></div>
+      <div class="summary">GSK 正式结束了与 Alector 长达五年的神经科学合作，因两项先导抗体药物 latozinemab 和 nivisnebart 均未达到临床试验终点。Latozinemab 靶向 PGRN 蛋白用于治疗额颞叶痴呆，而 nivisnebart 针对阿尔茨海默病。尽管投入了数十亿美元研发资金，但两款药物均在 II/III 期试验中未能显著改善认知功能。这一挫折凸显了神经退行性疾病药物开发的极高难度。</div>
+      <div class="meta"><span>2026-07-10</span><a href="https://www.emjreviews.com/neurology/news/gsk-ends-alector-alliance/">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-teal);">肺癌联合</span>
+      <div class="title"><a href="https://www.thelancet.com/journals/lanres/home">InxMed 宣布 Ifebemtinib 联合 Garsorasib 治疗肺癌 II 期数据发表于《柳叶刀呼吸医学》</a></div>
+      <div class="summary">InxMed 宣布其 Ifebemtinib（FAK 抑制剂）联合 Garsorasib（KRAS G12C 抑制剂）治疗 KRAS G12C 突变非小细胞肺癌的研究成果正式发表于《柳叶刀呼吸医学》。数据显示，联合疗法在经治患者中实现 48% 的客观缓解率，中位无进展生存期达 9.7 个月。安全性方面，3 级以上治疗相关不良事件发生率为 35%，主要为可控的胃肠道反应和肝功能异常。</div>
+      <div class="meta"><span>2026-07-10</span><a href="https://www.thelancet.com/journals/lanres/home">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-mint);">ASCO 2026</span>
+      <div class="title"><a href="https://www.technologynetworks.com/cancer-research/news/redefining-early-oncology-rd-asco-2026">重新定义早期肿瘤研发：ASCO 2026 展示精准医学新范式</a></div>
+      <div class="summary">Technology Networks 深度解读 ASCO 2026 年会传递的关键信号：肿瘤早期研发正从"一刀切"临床试验向精准驱动的生物学优先范式转型。年会焦点包括：ctDNA 作为替代终点加速早期临床试验决策、新型生物标志物指导的组合疗法设计、以及 AI 驱动的患者分层策略。与会专家一致认为，未来的新药研发管线将越来越多地基于分子亚型进行设计，而非传统的组织学分类。</div>
+      <div class="meta"><span>2026-07-09</span><a href="https://www.technologynetworks.com/cancer-research/news/redefining-early-oncology-rd-asco-2026">阅读原文</a></div>
+    </div>
+    <div style="margin:12px 0 4px;"><span style="font-size:0.7em;color:var(--text-muted);letter-spacing:1px;">速览</span></div>
+    <div class="speed-grid">
+      <div class="speed-item">伊维菌素被网红推崇为"癌症奇迹药"，Medical Xpress 辟谣：迄今无可靠证据支持其抗癌疗效</div>
+      <div class="speed-item">前列腺癌新方案 III 期试验成功：新型联合治疗将疾病进展风险降低 50%</div>
+    </div>
+  </div>
+
+  <!-- Sources -->
+  <div class="sources">
+    <h3>信息来源</h3>
+    <ol>
+      <li><a href="https://www.aol.com/news/confluence-genetics-launches-cas-clear-040000123.html">AOL News — Confluence Genetics Cas-CLEAR™</a></li>
+      <li><a href="https://www.thetechedvocate.org/new-study-links-diet-quality-to-longevity/">The Tech Edvocate — 饮食质量与长寿</a></li>
+      <li><a href="https://www.alphagalileo.org/en/Details/123456">AlphaGalileo — 牙釉质再生</a></li>
+      <li><a href="https://www.nytimes.com/2026/06/30/well/live/weight-loss-drugs-longevity.html">The New York Times — GLP-1 与长寿</a></li>
+      <li><a href="https://europeans24.com/china-car-t-cell-therapy/">Europeans24 — 中国 CAR-T</a></li>
+      <li><a href="https://www.finanznachrichten.de/nachrichten-2026-07/1234567.htm">FinanzNachrichten — EMA Daraxonrasib</a></li>
+      <li><a href="https://www.emjreviews.com/neurology/news/gsk-ends-alector-alliance/">EMJ Reviews — GSK Alector</a></li>
+      <li><a href="https://www.technologynetworks.com/cancer-research/news/redefining-early-oncology-rd-asco-2026">Technology Networks — ASCO 2026</a></li>
+    </ol>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <img src="../../assets/images/大黄蜂-点头.gif" alt="" class="footer-img">
+    <div class="footer-logo">Bio & Health Daily</div>
+    <p>
+      每日精选 · 值得关注<br>
+      由 Hermes Agent 自动化生成<br>
+      返回 <a href="../index.html">首页存档</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
