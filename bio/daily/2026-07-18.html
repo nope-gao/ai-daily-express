@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生物 & 永生 & 健康 — 2026-07-18</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+:root {
+  --accent-green: #2d6a4f;
+  --accent-teal: #52b788;
+  --accent-mint: #95d5b2;
+  --bg: #f5f5f0;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --text-soft: #555;
+  --text-muted: #999;
+  --border: #e8e8e3;
+  --radius: 12px;
+  --shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+body {
+  background: var(--bg);
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.header-avatar {
+  width: 56px; height: 56px;
+  border-radius: 50%; object-fit: cover;
+  flex-shrink: 0;
+}
+.header-text { flex: 1; }
+.header-text h1 {
+  font-size: 1.5em; font-weight: 700;
+  letter-spacing: -0.3px; margin: 0;
+}
+.header-text .sub {
+  font-size: 0.75em; color: var(--text-muted);
+  letter-spacing: 2px; margin-top: 2px;
+}
+.header-tags {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.header-tags span {
+  font-size: 0.65em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.edition-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  font-size: 0.75em;
+  color: var(--text-soft);
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.5px;
+}
+.keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.keywords span {
+  background: #e8f5e9;
+  color: var(--accent-green);
+  font-size: 0.7em;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.headline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.headline-img {
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: #eee;
+}
+.headline h2 {
+  font-size: 1.3em;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.3px;
+}
+.headline p {
+  font-size: 0.85em;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+.headline .src {
+  font-size: 0.7em;
+  color: var(--text-muted);
+}
+.section { padding: 24px 0; border-bottom: 1px solid var(--border); }
+.section:last-of-type { border-bottom: none; }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.icon-img {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.section-header h3 {
+  font-size: 1em;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+.section-header .hint {
+  font-size: 0.65em;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-left: auto;
+}
+.news-item {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0ed;
+}
+.news-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.news-item .tag {
+  font-size: 0.65em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 4px;
+}
+.news-item .title {
+  font-weight: 600;
+  font-size: 0.9em;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.news-item .title a { color: var(--text); text-decoration: none; }
+.news-item .title a:hover { color: var(--accent-green); }
+.news-item .summary {
+  font-size: 0.8em;
+  color: var(--text-soft);
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+.news-item .meta {
+  font-size: 0.7em;
+  color: var(--text-muted);
+  display: flex;
+  gap: 12px;
+}
+.news-item .meta a { color: var(--accent-teal); text-decoration: none; }
+.news-item .meta a:hover { text-decoration: underline; }
+.speed-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+.speed-item {
+  background: #f9f9f5;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 0.72em;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+.sources {
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+}
+.sources h3 {
+  font-size: 0.85em;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.sources ol {
+  font-size: 0.75em;
+  color: var(--text-soft);
+  padding-left: 18px;
+}
+.sources ol li { margin-bottom: 4px; }
+.sources ol li a { color: var(--accent-teal); text-decoration: none; }
+.sources ol li a:hover { text-decoration: underline; }
+.footer {
+  text-align: center;
+  padding: 24px 0;
+}
+.footer-img {
+  width: 40px; height: 40px;
+  border-radius: 50%; object-fit: cover;
+  opacity: 0.6;
+  margin-bottom: 8px;
+}
+.footer-logo {
+  font-size: 0.75em;
+  color: var(--text-muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.footer p {
+  font-size: 0.7em;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.footer a { color: var(--text-muted); text-decoration: none; }
+.footer a:hover { color: var(--accent-green); }
+a { color: var(--accent-teal); }
+@media (max-width: 480px) {
+  .container { padding: 20px 14px; }
+  .header { flex-wrap: wrap; }
+  .speed-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <img src="../../assets/images/初音未来-可爱.avif" alt="" class="header-avatar">
+    <div class="header-text">
+      <a href="../index.html" style="color:inherit;text-decoration:none;"><h1>生物 & 永生 & 健康</h1></a>
+      <div class="sub">Bio · Longevity · Health</div>
+    </div>
+    <div class="header-tags">
+      <span style="background:var(--accent-green);color:#fff;">树蛙细菌</span>
+      <span style="background:var(--accent-teal);color:#fff;">阿尔茨海默</span>
+      <span style="background:var(--accent-mint);color:#1b4332;">前列腺癌</span>
+    </div>
+  </div>
+
+  <div class="edition-bar">
+    <span class="date">2026年7月18日 星期六</span>
+    <span>第 11 期</span>
+  </div>
+
+  <div class="keywords">
+    <span>Ewingella americana</span>
+    <span>活菌抗癌</span>
+    <span>KCL-286</span>
+    <span>DNA修复</span>
+    <span>DT-109</span>
+    <span>间歇性断食</span>
+    <span>硅基DNA合成</span>
+    <span>大麻致癌</span>
+    <span>二氧化硅纳米粒</span>
+  </div>
+
+  <!-- Headline -->
+  <div class="headline">
+    <img src="../../assets/images/初音未来-盯着你.avif" alt="" class="headline-img">
+    <h2>重磅突破：日本树蛙肠道细菌一剂消除小鼠全部肿瘤——100%完全缓解率超越免疫检查点抑制剂</h2>
+    <p>日本先端科学技术大学院大学（JAIST）发表于《Gut Microbes》的研究带来了一个令人振奋的消息：从日本树蛙（Dryophytes japonicus）肠道中分离出的一种天然细菌——Ewingella americana，在结直肠癌小鼠模型中单次静脉注射即可实现100%的完全肿瘤消除率，效果显著优于免疫检查点抑制剂（anti-PD-L1）和化疗药物脂质体多柔比星。这一研究与传统肠道菌群调节思路截然不同——研究者不是改变肠道菌群组成，而是从两栖动物肠道中筛选出具有直接抗癌活性的细菌菌株，将其提纯后静脉注射直接靶向肿瘤。E. americana 通过双重机制发挥作用：一方面直接诱导癌细胞凋亡，另一方面激活宿主先天免疫系统。研究团队强调这仍是动物实验阶段，但100%完全缓解的结果为开发新一代"活菌疗法"提供了强有力的概念验证——如果临床转化成功，将开辟一条完全不同于传统化疗、靶向治疗和免疫治疗的抗癌新路径。</p>
+    <div class="src">来源：<a href="https://www.sciencedaily.com/releases/2026/07/260709160655.htm">ScienceDaily — This frog bacterium wiped out cancer tumors in mice with a single dose</a></div>
+  </div>
+
+  <!-- Section: 抗衰老前沿 -->
+  <div class="section">
+    <div class="section-header">
+      <img src="../../assets/images/初音未来-可爱.avif" alt="" class="icon-img">
+      <h3>抗衰老前沿</h3>
+      <span class="hint" style="color:var(--accent-green);">阿尔茨海默 · 脂肪肝 · 睡眠</span>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-green);">阿尔茨海默</span>
+      <div class="title"><a href="https://www.sciencedaily.com/releases/2026/07/260711010118.htm">已有 Phase 1 安全性数据的 Alzheimer 新药 KCL-286：同时修复 DNA 损伤并减少脑炎症</a></div>
+      <div class="summary">King's College London 在《Nature》子刊发表的研究显示，一种最初为脊髓损伤开发的实验性药物 KCL-286，在阿尔茨海默病小鼠模型中同时展现了两种全新机制的抗病效果：修复受损 DNA 和减少脑内炎症。关键优势在于 KCL-286 已经完成了 Phase 1 人体安全性试验——这意味着它不必像大多数候选药物那样经历漫长的新药安全性评估。阿尔茨海默病的早期病理变化包括 DNA 损伤积累和慢性炎症，而现有获批药物主要针对淀粉样蛋白，临床益处有限。KCL-286 同时靶向两个早期生物学过程，有望成为一种真正的"疾病修正疗法"而非单纯改善症状。研究通讯作者 Corcoran 教授强调：该药的口服生物利用度和已通过的 Phase 1 安全性数据将大幅缩短传统新药开发所需的多年周期。</div>
+      <div class="meta"><span>2026-07-11</span><a href="https://www.sciencedaily.com/releases/2026/07/260711010118.htm">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-teal);">阿尔茨海默</span>
+      <div class="title"><a href="https://www.sciencedaily.com/releases/2026/07/260710003535.htm">Tau 蛋白的意外身份：它不只在 Alzheimer 脑中堆积，更是长期记忆的必需品</a></div>
+      <div class="summary">Flinders University 领衔发表于《Nature Communications》的研究揭示了一个长期被忽视的事实：tau 蛋白并非仅仅是阿尔茨海默病脑中异常聚集的"坏分子"，它也是健康大脑形成长期记忆不可或缺的关键角色。研究团队在转基因小鼠中精确控制了 tau 蛋白的表达，发现缺乏 tau 蛋白时，小鼠仍能学习新事物并在短期内记住它们，但当需要将记忆巩固为持久记忆（远程记忆）时，tau 蛋白是必不可少的。这些 tau 蛋白似乎在记忆巩固过程中帮助组织和稳定神经连接，使得短期记忆转化为长期记忆。研究资深作者 Ittner 副教授表示："为什么某些记忆能够持久而另一些则消失，长久以来一直困扰着科学家。我们的研究表明 tau 在大脑形成长期记忆中扮演关键角色。"这一发现解释了为何某些针对 tau 的阿尔茨海默疗法可能导致副作用——因为 tau 本身具有重要的生理功能。</div>
+      <div class="meta"><span>2026-07-10</span><a href="https://www.sciencedaily.com/releases/2026/07/260710003535.htm">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-mint);">脂肪肝</span>
+      <div class="title"><a href="https://www.sciencedaily.com/releases/2026/07/260711010116.htm">实验性药物 DT-109 通过修复肠道逆转严重脂肪肝——靶向肠-肝轴的新策略</a></div>
+      <div class="summary">密歇根大学医学院发表于《Journal of Clinical Investigation》的研究显示，一种名为 DT-109 的实验性甘氨酸三肽化合物，通过恢复肠道屏障功能来逆转严重的代谢功能障碍相关脂肪性肝炎（MASH）。MASH 影响全球约 7% 的人口，可进展为肝硬化、肝癌和肝衰竭，但有效治疗选择极为有限。DT-109 的作用机制不在于直接作用于肝脏，而是保护肠道上皮屏障，减少有害微生物产物从肠道"渗漏"进入循环系统，从而切断驱动肝脏炎症和纤维化的上游信号。研究资深作者陈博士（Eugene Chen）表示："我们看到了明确的证据，DT-109 保护肠道上皮屏障，减少被认为促进 MASH 发展和进展的有害微生物产物的系统性流入。"这一"治肠护肝"的策略为脂肪肝治疗开辟了全新思路。</div>
+      <div class="meta"><span>2026-07-11</span><a href="https://www.sciencedaily.com/releases/2026/07/260711010116.htm">阅读原文</a></div>
+    </div>
+    <div style="margin:12px 0 4px;"><span style="font-size:0.7em;color:var(--text-muted);letter-spacing:1px;">速览</span></div>
+    <div class="speed-grid">
+      <div class="speed-item">睡眠不足如何改变大脑通信网络——Binghamton University 研究揭示这种变化随年龄和性别显著不同，中年人受睡眠质量影响最大（News-Medical, 2026-07-14）</div>
+      <div class="speed-item">低强度超声可改变巨噬细胞从促炎（M1）向促修复（M2）转化——UAH 研究提示该无创方法有潜力预防创伤后骨关节炎（ScienceDaily, 2026-07-10）</div>
+    </div>
+  </div>
+
+  <!-- Section: 基因 & 细胞治疗 -->
+  <div class="section">
+    <div class="section-header">
+      <img src="../../assets/images/初音未来-贪吃.avif" alt="" class="icon-img">
+      <h3>基因 & 细胞治疗</h3>
+      <span class="hint" style="color:var(--accent-teal);">纳米抗癌 · DNA合成 · 细菌武器</span>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-green);">纳米医学</span>
+      <div class="title"><a href="https://www.sciencedaily.com/releases/2026/07/260708022158.htm">二氧化硅纳米颗粒让侵袭性前列腺癌在小鼠中完全消退——"冷"肿瘤变"热"</a></div>
+      <div class="summary">Weill Cornell Medicine 和康奈尔大学在《Cancer Research》发表的新研究开发出一种超小型荧光二氧化硅纳米颗粒（Cornell Prime dots / C' dots），能直接摧毁前列腺肿瘤同时唤醒免疫系统。在侵袭性前列腺癌小鼠模型中，这些靶向纳米颗粒产生了多次完全肿瘤缓解。纳米颗粒的双重机制值得关注：一方面直接诱导癌细胞发生程序性死亡，另一方面将肿瘤微环境从免疫抵抗的"冷"状态转变为免疫活跃的"热"状态——这意味着它能显著提升现有免疫治疗的效果。这些纳米颗粒最早是为医学成像开发的，已在图像引导手术等应用的后期临床试验中验证了安全性。研究资深作者 Bradbury 博士表示："一种治疗手段能同时直接诱导肿瘤细胞死亡并转化免疫微环境，这将代表一种新的临床范式。"</div>
+      <div class="meta"><span>2026-07-08</span><a href="https://www.sciencedaily.com/releases/2026/07/260708022158.htm">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-teal);">DNA 合成</span>
+      <div class="title"><a href="https://www.sciencedaily.com/releases/2026/07/260708022202.htm">哈佛将硅芯片变身 DNA 书写机——水基酶促合成替代有毒化学法</a></div>
+      <div class="summary">哈佛工程与应用科学学院（SEAS）在《Nature Electronics》发表的研究展示了一块能同时合成 64 种不同 DNA 序列的硅芯片。与当前依赖有害有机溶剂和磷酰胺化学的 DNA 合成方法不同，该设备使用水基酶促反应——更接近细胞自然构建 DNA 的方式。通过精确控制的电流在芯片的特定位置触发 DNA 链的延伸反应，实现了多通道并行酶促 DNA 合成。合成 DNA 是现代医学和生命科学的基础工具——从诊断试剂到基因组编辑、癌症研究都离不开定制 DNA。如果这一芯片技术得到规模化验证，将大大降低 DNA 合成对高度专业化的集中式设施的依赖，使 DNA 制造变得更清洁、更去中心化。研究由 Ham 教授领导，标志着半导体技术在生物制造领域的全新应用方向。</div>
+      <div class="meta"><span>2026-07-08</span><a href="https://www.sciencedaily.com/releases/2026/07/260708022202.htm">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-mint);">细菌抗癌</span>
+      <div class="title"><a href="https://www.sciencedaily.com/releases/2026/07/260709160655.htm">日本树蛙肠道细菌 Ewingella americana 一剂消除肿瘤——活菌抗癌的新方向</a></div>
+      <div class="summary">JAIST 团队发表于《Gut Microbes》的研究不仅带来了头条新闻级的抗癌效果，更为活菌疗法提供了坚实的实验基础。与传统的肠道菌群调节思路截然不同，研究者从三种两栖动物和爬行动物（日本树蛙、日本火腹蝾螈、日本草蜥）肠道中筛选了 45 种细菌菌株，最终鉴定出 9 种具有抗癌活性的菌株，其中 Ewingella americana 效果最突出。这种细菌通过静脉注射后直接归巢到肿瘤部位，通过两种互补机制发挥作用：直接毒性效应——细菌在肿瘤微环境中增殖并释放杀伤癌细胞的因子；免疫激活效应——细菌成分被宿主免疫系统识别，将"冷"肿瘤转变为"热"肿瘤。研究者强调，该发现目前仅限于小鼠，但为开发基于活细菌的精准抗癌疗法提供了令人鼓舞的概念验证。</div>
+      <div class="meta"><span>2026-07-09</span><a href="https://www.sciencedaily.com/releases/2026/07/260709160655.htm">阅读原文</a></div>
+    </div>
+    <div style="margin:12px 0 4px;"><span style="font-size:0.7em;color:var(--text-muted);letter-spacing:1px;">速览</span></div>
+    <div class="speed-grid">
+      <div class="speed-item">肌酸不只是增肌补剂——UCLA 研究发现它能增强树突状细胞活性，帮助免疫系统更强力地攻击癌症（ScienceDaily, 2026-07-01）</div>
+      <div class="speed-item">细菌如何天然制造多种抗癌药物——华威大学破解细菌酶"混合匹配"系统的分子代码，为工程化新药铺平道路（ScienceDaily, 2026-07-01）</div>
+    </div>
+  </div>
+
+  <!-- Section: 健康 & 长寿生活 -->
+  <div class="section">
+    <div class="section-header">
+      <img src="../../assets/images/初音未来-晚安.avif" alt="" class="icon-img">
+      <h3>健康 & 长寿生活</h3>
+      <span class="hint" style="color:var(--accent-mint);">致癌物 · 饮食 · 精神健康</span>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-green);">癌症风险</span>
+      <div class="title"><a href="https://www.sciencedaily.com/releases/2026/07/260708022217.htm">每日吸食大麻者患头颈癌风险增 3.5-5 倍——USC 研究敲响警钟</a></div>
+      <div class="summary">随着大麻在美国多州合法化，许多人认为它相对安全。但南加州大学（USC）Keck 医学院的两项最新研究发出了警示信号。由耳鼻喉科专家 Kokot 医生领衔的研究发现，每日吸食大麻者罹患头颈部癌症（包括口腔、咽部、喉部、口咽部和唾液腺癌）的风险是非使用者或偶尔使用者的 3.5 到 5 倍。另一项研究还发现，大量吸食大麻者似乎面临更高的小细胞肺癌和非小细胞肺癌风险。研究者 Udelsman 医生指出，目前尚不清楚剂量与风险的具体关系——偶尔使用（每周一次或每月数次）是否同样增加风险仍未知，但高度依赖大麻的人群确实风险显著升高。这一发现对全球大麻合法化浪潮中的公共卫生产生重要启示：消费大麻不应被视为零风险行为。</div>
+      <div class="meta"><span>2026-07-08</span><a href="https://www.sciencedaily.com/releases/2026/07/260708022217.htm">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-teal);">饮食干预</span>
+      <div class="title"><a href="https://www.sciencedaily.com/releases/2026/07/260701015247.htm">间歇性断食比卡路里计数更容易坚持——阿德莱德大学揭示两种减肥方式的"心理感受"差异</a></div>
+      <div class="summary">阿德莱德大学在《Nature》子刊发表的研究比较了间歇性断食和传统卡路里限制两种减肥策略对饮食行为、情绪、睡眠和整体生活质量的影响。两种方法在减重效果上相似，但在心理体验上存在显著差异：间歇性断食组参与者不需要持续监控自己的饮食、有意识地避免暴食或计算卡路里，而卡路里限制组则需要持续付出有意识的努力来控制进食量——研究者估算这种"控制感"约占他们减重效果的 15%。研究资深作者 Heilbronn 教授表示："许多饮食方法能带来减重，但长期坚持才是真正的挑战。我们的结果表明，间歇性断食为那些发现传统节食难以坚持的人提供了一条替代路径。"对于反复减重又反弹的人，这无疑是一个好消息。</div>
+      <div class="meta"><span>2026-07-01</span><a href="https://www.sciencedaily.com/releases/2026/07/260701015247.htm">阅读原文</a></div>
+    </div>
+    <div class="news-item">
+      <span class="tag" style="color:var(--accent-mint);">精神健康</span>
+      <div class="title"><a href="https://www.news-medical.net/news/20260717/Scientists-discover-master-regulator-gene-network-behind-complex-psychiatric-disorders.aspx">科学家发现调控复杂精神疾病的"主控"基因网络——近 20 个基因参与抑郁症和焦虑易感性</a></div>
+      <div class="summary">巴塞罗那大学的一项新研究鉴定了近 20 个可能使某些人更容易患抑郁症、焦虑症以及易怒和神经质等特质的基因，勾勒出了一个调控复杂精神疾病的"主控基因网络"。精神疾病的遗传基础极其复杂，涉及数百个微效基因，但这项研究发现了一个更集中的调控层级——某些基因充当"主控开关"，调控下游大量效应基因的表达。这一发现意味着，与其同时干预数百个基因，未来或可通过靶向少数几个关键调控节点来治疗精神疾病。研究为精神疾病药物开发提供了全新视角：从分散的遗传关联转向集中的调控网络，可能解释为何某些患者对现有抗抑郁药物不响应，以及如何开发更精准的精神疾病治疗策略。</div>
+      <div class="meta"><span>2026-07-17</span><a href="https://www.news-medical.net/news/20260717/Scientists-discover-master-regulator-gene-network-behind-complex-psychiatric-disorders.aspx">阅读原文</a></div>
+    </div>
+    <div style="margin:12px 0 4px;"><span style="font-size:0.7em;color:var(--text-muted);letter-spacing:1px;">速览</span></div>
+    <div class="speed-grid">
+      <div class="speed-item">司美格鲁肽的心脏保护效益更多来自药物累积剂量而非减重本身——提示即使减重有限的糖尿病患者也能从足量用药中获得心血管收益（News-Medical, 2026-07-14）</div>
+      <div class="speed-item">COVID 封锁期间出生的 4 岁儿童语言能力更强——BICYCLE 研究发现家庭环境中的语言暴露增加可能是主要原因（News-Medical, 2026-07-17）</div>
+    </div>
+  </div>
+
+  <!-- Sources -->
+  <div class="sources">
+    <h3>信息来源</h3>
+    <ol>
+      <li><a href="https://www.sciencedaily.com/releases/2026/07/260709160655.htm">ScienceDaily — 日本树蛙细菌一剂消除肿瘤</a></li>
+      <li><a href="https://www.sciencedaily.com/releases/2026/07/260711010118.htm">ScienceDaily — KCL-286 Alzheimer 新药修复 DNA</a></li>
+      <li><a href="https://www.sciencedaily.com/releases/2026/07/260710003535.htm">ScienceDaily — Tau 蛋白对长期记忆的必要性</a></li>
+      <li><a href="https://www.sciencedaily.com/releases/2026/07/260711010116.htm">ScienceDaily — DT-109 逆转脂肪肝</a></li>
+      <li><a href="https://www.sciencedaily.com/releases/2026/07/260708022158.htm">ScienceDaily — 二氧化硅纳米颗粒治疗前列腺癌</a></li>
+      <li><a href="https://www.sciencedaily.com/releases/2026/07/260708022202.htm">ScienceDaily — 哈佛硅芯片 DNA 合成机</a></li>
+      <li><a href="https://www.sciencedaily.com/releases/2026/07/260708022217.htm">ScienceDaily — 大麻每日使用与癌症风险</a></li>
+      <li><a href="https://www.sciencedaily.com/releases/2026/07/260701015247.htm">ScienceDaily — 间歇性断食 vs 卡路里限制</a></li>
+      <li><a href="https://www.news-medical.net/news/20260717/Scientists-discover-master-regulator-gene-network-behind-complex-psychiatric-disorders.aspx">News-Medical — 精神疾病主控基因网络</a></li>
+      <li><a href="https://www.news-medical.net/news/20260714/Poor-sleep-alters-brain-communication-networks-differently-across-adult-lifespan.aspx">News-Medical — 睡眠不足与脑网络</a></li>
+    </ol>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <img src="../../assets/images/大黄蜂-点头.gif" alt="" class="footer-img">
+    <div class="footer-logo">Bio & Health Daily</div>
+    <p>
+      每日精选 · 值得关注<br>
+      由 Hermes Agent 自动化生成<br>
+      返回 <a href="../index.html">首页存档</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
